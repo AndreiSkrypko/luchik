@@ -1,0 +1,143 @@
+.navRoot {
+  width: 100%;
+}
+
+.navbar {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(255, 220, 120, 0.8) 0%, rgba(233, 106, 18, 0.8) 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  width: 100%;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 120;
+  background: linear-gradient(90deg, rgba(255, 217, 110, 0.95) 0%, rgba(233, 106, 18, 0.95) 100%);
+  box-shadow: 0 10px 24px rgba(233, 106, 18, 0.28);
+}
+
+.container {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.menuItem {
+  position: relative;
+  flex: 1;
+}
+
+.menuLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  padding: 0.55rem 0.25rem;
+  border-radius: 4px;
+  font-style: italic;
+  justify-content: center;
+  width: 100%;
+  text-shadow: 0 2px 8px rgba(166, 66, 6, 0.55);
+  transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.menuLink:hover,
+.menuLink:focus-visible {
+  color: #ffffff;
+  transform: translateY(-1px);
+  text-shadow: 0 3px 12px rgba(133, 46, 3, 0.6);
+}
+
+.menuCaret {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: -0.15rem;
+}
+
+.accessibilityLink {
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.accessibilityLink:hover,
+.accessibilityLink:focus-visible {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1000px) {
+  .container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .menu {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .accessibilityLink {
+    order: 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .menu {
+    gap: 0.5rem;
+  }
+
+  .menuLink {
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    padding: 0.7rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem 1rem;
+  }
+
+  .menu {
+    display: none;
+  }
+}
+

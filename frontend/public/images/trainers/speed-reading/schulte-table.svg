@@ -1,0 +1,26 @@
+<svg width="400" height="220" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="220" rx="28" fill="url(#gradient-bg)" />
+  <rect x="80" y="46" width="240" height="128" rx="20" fill="rgba(255,255,255,0.9)" />
+  <g font-family="Montserrat, sans-serif" font-size="26" font-weight="700" fill="#264077" text-anchor="middle">
+    <text x="120" y="86">1</text>
+    <text x="200" y="86">8</text>
+    <text x="280" y="86">3</text>
+    <text x="120" y="126">6</text>
+    <text x="200" y="126">2</text>
+    <text x="280" y="126">10</text>
+    <text x="120" y="166">11</text>
+    <text x="200" y="166">4</text>
+    <text x="280" y="166">7</text>
+  </g>
+  <circle cx="320" cy="54" r="22" fill="rgba(92,120,214,0.3)" />
+  <text x="80" y="200" font-family="Montserrat, sans-serif" font-size="18" font-weight="600" fill="rgba(255,255,255,0.85)">
+    Таблица Шульте — тренируем фокус и периферийное зрение
+  </text>
+  <defs>
+    <linearGradient id="gradient-bg" x1="40" y1="10" x2="360" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5C78D6" />
+      <stop offset="1" stop-color="#E96A12" />
+    </linearGradient>
+  </defs>
+</svg>
+

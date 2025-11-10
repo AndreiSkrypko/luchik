@@ -1,0 +1,264 @@
+.footer {
+  position: relative;
+  margin-top: 4rem;
+  padding: 3.5rem 1.5rem 2rem;
+  background: linear-gradient(180deg, #e5ecff 0%, #d8e1ff 55%, #ffd992 100%);
+  color: #264077;
+}
+
+.background {
+  display: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.brandRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem 2.5rem;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.brandDescriptor {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #d77a1a;
+}
+
+.brandName {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e96a12;
+}
+
+.brandText p {
+  max-width: 520px;
+  line-height: 1.6;
+  font-weight: 600;
+  color: rgba(38, 64, 119, 0.8);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.columnTitle {
+  font-size: 1.12rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(38, 64, 119, 0.9);
+}
+
+.column + .column {
+  border-left: 2px dotted rgba(38, 64, 119, 0.25);
+  padding-left: 2rem;
+}
+
+.phoneList,
+.socialList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.phoneCard,
+.socialCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: #264077;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.phoneCard:hover,
+.phoneCard:focus-visible,
+.socialCard:hover,
+.socialCard:focus-visible {
+  color: #e96a12;
+}
+
+.phoneLabel {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(38, 64, 119, 0.5);
+  font-weight: 700;
+}
+
+.phoneValue {
+  font-size: 1.16rem;
+  font-weight: 800;
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.scheduleRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: 600;
+  color: #264077;
+}
+
+.scheduleRow strong {
+  color: #e96a12;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #264077;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  transform: translateX(4px);
+  color: #e96a12;
+}
+
+.navMarker {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: rgba(233, 106, 18, 0.7);
+}
+
+.socialCaption {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(38, 64, 119, 0.55);
+  font-weight: 700;
+}
+
+.socialLabel {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #264077;
+}
+
+.bottom {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 2px dotted rgba(38, 64, 119, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(38, 64, 119, 0.85);
+}
+
+.starRow {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.star {
+  font-size: 1.1rem;
+  color: #e96a12;
+}
+
+.markerblue {
+  background: rgba(93, 160, 255, 0.9);
+}
+
+.markeryellow {
+  background: rgba(255, 220, 130, 0.9);
+}
+
+.markerred {
+  background: rgba(255, 140, 120, 0.9);
+}
+
+.markergreen {
+  background: rgba(173, 215, 120, 0.9);
+}
+
+.markerpink {
+  background: rgba(222, 152, 226, 0.9);
+}
+
+.markerorange {
+  background: rgba(233, 106, 18, 0.9);
+}
+
+@media (max-width: 900px) {
+  .column + .column {
+    border-left: none;
+    padding-left: 0;
+    border-top: 2px dotted rgba(255, 255, 255, 0.35);
+    padding-top: 1.5rem;
+  }
+
+  .bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 3rem 1rem 1.75rem;
+  }
+
+  .brandRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brandText p {
+    max-width: none;
+  }
+
+  .scheduleRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

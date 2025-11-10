@@ -1,0 +1,621 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.topBar {
+  background:
+    radial-gradient(120% 140% at 95% 5%, rgba(255, 230, 128, 0.72) 0%, rgba(255, 230, 128, 0) 55%),
+    linear-gradient(180deg, #e4ecff 0%, #f2f5ff 100%);
+  border-bottom: 1px solid rgba(146, 169, 237, 0.28);
+  color: #4a5fb1;
+  font-size: 0.95rem;
+}
+
+.topBarInner {
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1rem;
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) repeat(4, minmax(160px, 1fr)) auto;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.brandCell {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  text-decoration: none;
+  color: inherit;
+  justify-self: flex-start;
+  justify-content: flex-start;
+  padding-left: 0;
+  margin-left: 1rem;
+}
+
+.brandBadge {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff 0%, #fff7ce 52%, #ffc04a 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 26px rgba(244, 152, 51, 0.28);
+  border: 4px solid #ffffff;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  line-height: 1.05;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 320px;
+}
+
+.brandDescriptor {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #e96a12;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(255, 220, 150, 0.55);
+}
+
+.brandName {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #e96a12;
+  text-transform: uppercase;
+  text-shadow:
+    -1px -1px 0 #ffffff,
+    1px -1px 0 #ffffff,
+    -1px 1px 0 #ffffff,
+    1px 1px 0 #ffffff,
+    0 4px 12px rgba(233, 106, 18, 0.35);
+}
+
+.infoCell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  padding: 0.25rem 0;
+}
+
+.infoLines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  line-height: 1.2;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.infoCell:first-child .infoIcon {
+  display: none;
+}
+
+.infoLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: inherit;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.45);
+}
+
+.infoValue {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  color: inherit;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.35);
+}
+
+.infoLink {
+  position: relative;
+  color: inherit;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  padding-bottom: 0.05rem;
+  transition: color 0.2s ease;
+}
+
+.infoLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15rem;
+  height: 1px;
+  background: rgba(74, 95, 177, 0.6);
+  opacity: 0.65;
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(63, 143, 196, 0.18);
+}
+
+.socialLink span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.socialInstagram {
+  background: rgba(186, 119, 205, 0.35);
+  border: 1px solid rgba(186, 119, 205, 0.5);
+}
+
+.socialVk {
+  background: rgba(63, 143, 196, 0.35);
+  border: 1px solid rgba(63, 143, 196, 0.5);
+}
+
+.socialOk {
+  background: rgba(227, 150, 80, 0.35);
+  border: 1px solid rgba(227, 150, 80, 0.5);
+}
+
+.instagramIcon::before {
+  content: 'IG';
+}
+
+.vkIcon::before {
+  content: 'VK';
+}
+
+.okIcon::before {
+  content: 'OK';
+}
+
+.infoIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: inherit;
+  margin-top: 0.1rem;
+}
+
+.infoCity {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: inherit;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.35);
+}
+
+.infoAddress {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  color: inherit;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.35);
+}
+
+.infoPhone {
+  position: relative;
+  display: inline-block;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: inherit;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  padding-bottom: 0.05rem;
+  transition: color 0.2s ease;
+}
+
+.infoPhone::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.12rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.actionsCell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.callbackButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.6rem;
+  background: rgba(63, 143, 196, 0.18);
+  color: inherit;
+  border-radius: 18px;
+  border: 1px solid rgba(63, 143, 196, 0.45);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.8rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 16px rgba(63, 143, 196, 0.18);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.callbackButton:hover,
+.callbackButton:focus-visible {
+  background: rgba(63, 143, 196, 0.26);
+  border-color: rgba(63, 143, 196, 0.6);
+}
+
+.callbackIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(63, 143, 196, 0.22);
+  color: #e96a12;
+  border: 1px solid rgba(63, 143, 196, 0.4);
+  box-shadow: none;
+  font-size: 0.9rem;
+}
+
+.callbackIcon::before {
+  content: '☎';
+}
+
+.callbackLabel {
+  color: inherit;
+}
+
+
+.accessibilityIcon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.accessibilityIcon::before {
+  content: '👁';
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.banner {
+  background:
+    radial-gradient(120% 140% at 95% 5%, rgba(255, 230, 128, 0.55) 0%, rgba(255, 230, 128, 0) 55%),
+    linear-gradient(180deg, #e4ecff 0%, #f2f5ff 100%);
+  color: #4a5fb1;
+  padding: 1.75rem 1.5rem;
+  border-bottom: 1px solid rgba(146, 169, 237, 0.28);
+  box-shadow: 0 12px 26px rgba(146, 169, 237, 0.18);
+}
+
+.bannerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bannerTitle {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e96a12;
+  text-shadow: 0 3px 12px rgba(233, 106, 18, 0.28);
+}
+
+.bannerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+}
+
+.bannerList li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1rem 0.45rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #4a5fb1;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  box-shadow: inset 0 -2px 0 rgba(233, 106, 18, 0.25), 0 6px 18px rgba(146, 169, 237, 0.18);
+}
+
+.bannerList li::before {
+  display: none;
+}
+
+.heroSection {
+  background: linear-gradient(180deg, rgba(229, 236, 255, 0.65) 0%, rgba(255, 230, 186, 0.65) 100%);
+  padding: 3rem 1.5rem;
+}
+
+.heroContainer {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(142, 176, 255, 0.2);
+  color: #5c78d6;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+
+.heroTitle {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  color: #264077;
+  line-height: 1.15;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.heroSubtitle {
+  font-size: 1.05rem;
+  color: rgba(38, 64, 119, 0.75);
+  max-width: 540px;
+  font-weight: 600;
+}
+
+.heroBenefits {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.heroBenefits li {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 8px 18px rgba(86, 118, 190, 0.12);
+  border: 1px solid rgba(142, 176, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.heroBenefits strong {
+  color: #264077;
+  font-size: 1rem;
+}
+
+.heroBenefits span {
+  color: rgba(38, 64, 119, 0.75);
+  font-size: 0.9rem;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.primaryAction {
+  background: linear-gradient(90deg, rgba(233, 106, 18, 0.95) 0%, rgba(255, 180, 95, 0.95) 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(233, 106, 18, 0.25);
+}
+
+.primaryAction:hover,
+.primaryAction:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(233, 106, 18, 0.28);
+}
+
+.secondaryAction {
+  border: 2px solid rgba(142, 176, 255, 0.6);
+  color: #5c78d6;
+  background: #ffffff;
+}
+
+.secondaryAction:hover,
+.secondaryAction:focus-visible {
+  background: rgba(142, 176, 255, 0.1);
+  color: #3f5cb5;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1100px) {
+  .topBarInner {
+    grid-template-columns: auto repeat(2, minmax(0, 1fr));
+    gap: 1rem 1.5rem;
+  }
+
+  .actionsCell {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 860px) {
+  .topBarInner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brandCell {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .brandText {
+    align-items: center;
+  }
+
+  .infoCell {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .actionsCell {
+    align-items: center;
+  }
+
+  .bannerContainer {
+    text-align: center;
+    align-items: center;
+  }
+
+  .bannerList {
+    justify-content: center;
+  }
+
+  .heroCopy {
+    align-items: center;
+    text-align: center;
+  }
+
+  .heroBenefits {
+    gap: 0.8rem;
+  }
+
+  .heroBenefits li {
+    align-items: center;
+    text-align: left;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 540px) {
+  .topBarInner {
+    grid-template-columns: 1fr;
+    padding: 0.75rem 1rem;
+  }
+
+  .infoCell {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .actionsCell {
+    width: 100%;
+  }
+
+  .callbackButton {
+    width: 100%;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .banner {
+    padding: 1.5rem 1.1rem;
+  }
+
+  .heroSection {
+    padding: 2.5rem 1.1rem;
+  }
+
+  .heroBenefits li {
+    align-items: flex-start;
+  }
+
+  .heroActions {
+    gap: 0.75rem;
+  }
+}
+
