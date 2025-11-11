@@ -1,6 +1,7 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import CourseViewSet, ContactViewSet, home_data
+
+from .views import ContactViewSet, CourseViewSet, home_data
 
 router = DefaultRouter()
 router.register(r'courses', CourseViewSet)
@@ -8,6 +9,8 @@ router.register(r'contacts', ContactViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('', include('trainers.urls')),
+    path('trainers/schulte-table/', include('trainers_schulte_table.urls')),
+    path('trainers/stroop-test/', include('trainers_stroop.urls')),
     path('home/', home_data, name='home-data'),
 ]
-

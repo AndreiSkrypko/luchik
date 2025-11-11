@@ -32,6 +32,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'trainers',
+    'trainers_fading_text',
+    'trainers_schulte_table',
+    'trainers_stroop',
     'api',
 ]
 
