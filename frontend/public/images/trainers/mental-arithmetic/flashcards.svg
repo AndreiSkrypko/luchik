@@ -1,0 +1,23 @@
+<svg width="400" height="220" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="220" rx="28" fill="url(#gradient-bg)" />
+  <g opacity="0.12">
+    <rect x="48" y="48" width="120" height="80" rx="18" fill="rgba(255,255,255,0.25)" />
+    <rect x="120" y="72" width="120" height="80" rx="18" fill="rgba(255,255,255,0.4)" />
+  </g>
+  <text x="48" y="122" font-family="Montserrat, sans-serif" font-size="44" font-weight="700" fill="white" opacity="0.9">
+    Флэшкарты
+  </text>
+  <text x="48" y="154" font-family="Montserrat, sans-serif" font-size="18" font-weight="500" fill="rgba(255,255,255,0.75)">
+    Реакция, память и игровой формат карточек
+  </text>
+  <rect x="48" y="172" width="240" height="12" rx="6" fill="rgba(255,255,255,0.22)" />
+  <rect x="48" y="190" width="150" height="10" rx="5" fill="rgba(255,255,255,0.35)" />
+  <defs>
+    <linearGradient id="gradient-bg" x1="34" y1="12" x2="360" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5C78D6" />
+      <stop offset="1" stop-color="#E96A12" />
+    </linearGradient>
+  </defs>
+</svg>
+
+

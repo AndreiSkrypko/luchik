@@ -1,0 +1,24 @@
+<svg width="400" height="220" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="220" rx="28" fill="url(#gradient-bg)" />
+  <g opacity="0.12">
+    <text x="30" y="84" font-family="Montserrat, sans-serif" font-size="52" font-weight="700" fill="white">
+      99 × 101
+    </text>
+  </g>
+  <text x="30" y="120" font-family="Montserrat, sans-serif" font-size="34" font-weight="700" fill="white" opacity="0.9">
+    Умножение от базы
+  </text>
+  <text x="30" y="152" font-family="Montserrat, sans-serif" font-size="18" font-weight="500" fill="rgba(255,255,255,0.75)">
+    Учимся считать от ближайших баз — 10, 50, 100
+  </text>
+  <rect x="30" y="170" width="270" height="12" rx="6" fill="rgba(255,255,255,0.22)" />
+  <rect x="30" y="188" width="170" height="10" rx="5" fill="rgba(255,255,255,0.35)" />
+  <defs>
+    <linearGradient id="gradient-bg" x1="24" y1="14" x2="356" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5C78D6" />
+      <stop offset="1" stop-color="#E96A12" />
+    </linearGradient>
+  </defs>
+</svg>
+
+

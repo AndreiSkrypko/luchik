@@ -1,0 +1,24 @@
+<svg width="400" height="220" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="220" rx="28" fill="url(#gradient-bg)" />
+  <g opacity="0.12">
+    <text x="32" y="82" font-family="Montserrat, sans-serif" font-size="66" font-weight="700" fill="white">
+      5 ↔ 6
+    </text>
+  </g>
+  <text x="32" y="120" font-family="Montserrat, sans-serif" font-size="48" font-weight="700" fill="white" opacity="0.9">
+    Братья
+  </text>
+  <text x="32" y="152" font-family="Montserrat, sans-serif" font-size="18" font-weight="500" fill="rgba(255,255,255,0.75)">
+    Находим соседние числа и ускоряем переходы через десяток
+  </text>
+  <rect x="32" y="170" width="260" height="12" rx="6" fill="rgba(255,255,255,0.22)" />
+  <rect x="32" y="188" width="180" height="10" rx="5" fill="rgba(255,255,255,0.35)" />
+  <defs>
+    <linearGradient id="gradient-bg" x1="26" y1="10" x2="360" y2="208" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5C78D6" />
+      <stop offset="1" stop-color="#E96A12" />
+    </linearGradient>
+  </defs>
+</svg>
+
+
