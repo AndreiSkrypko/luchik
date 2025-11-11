@@ -12,17 +12,17 @@
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
-  padding: clamp(60px, 8vw, 100px) clamp(16px, 6vw, 40px) clamp(60px, 8vw, 90px);
+  padding: 32px 20px 48px;
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 4vw, 40px);
+  gap: 20px;
 }
 
 .topBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .backLink {
@@ -47,52 +47,53 @@
 .sectionHeader {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
   text-align: left;
+  max-width: 720px;
 }
 
 .sectionHeader h1 {
   margin: 0;
   font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: clamp(30px, 4vw, 44px);
+  font-size: clamp(26px, 3vw, 36px);
   color: #264077;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 .programBadge {
   display: inline-flex;
   align-self: flex-start;
-  padding: 0.45rem 1.1rem;
+  padding: 0.32rem 0.9rem;
   border-radius: 999px;
-  background: rgba(92, 120, 214, 0.15);
+  background: rgba(92, 120, 214, 0.12);
   color: #5c78d6;
   font-family: 'Georgia', 'Times New Roman', serif;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
 
 .sectionLead {
   margin: 0;
-  max-width: 720px;
-  font-size: clamp(16px, 1.4vw, 19px);
-  line-height: 1.7;
-  color: rgba(38, 64, 119, 0.82);
+  max-width: 600px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(38, 64, 119, 0.78);
 }
 
 .controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
+  padding: 16px 20px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(92, 120, 214, 0.18);
-  box-shadow: 0 18px 36px rgba(92, 120, 214, 0.16);
+  border: 1px solid rgba(92, 120, 214, 0.16);
+  box-shadow: 0 14px 28px rgba(92, 120, 214, 0.14);
 }
 
 .controlsHidden {
@@ -102,22 +103,22 @@
 .sizeSelector {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
-  color: rgba(38, 64, 119, 0.82);
+  color: rgba(38, 64, 119, 0.78);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
 }
 
 .sizeSelector input[type='range'] {
-  width: 200px;
+  width: 180px;
   accent-color: #5c78d6;
 }
 
 .sizeValue {
   font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #264077;
 }
 
@@ -131,12 +132,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.6rem;
-  border-radius: 18px;
+  padding: 0.65rem 1.4rem;
+  border-radius: 14px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.85rem;
+  letter-spacing: 0.09em;
+  font-size: 0.78rem;
   cursor: pointer;
   border: none;
   transition:
@@ -149,13 +150,13 @@
 .primaryButton {
   background: linear-gradient(90deg, rgba(233, 106, 18, 0.95) 0%, rgba(255, 180, 95, 0.95) 100%);
   color: #ffffff;
-  box-shadow: 0 16px 32px rgba(233, 106, 18, 0.26);
+  box-shadow: 0 12px 24px rgba(233, 106, 18, 0.24);
 }
 
 .secondaryButton {
   background: rgba(92, 120, 214, 0.12);
   color: #5c78d6;
-  border: 1px solid rgba(92, 120, 214, 0.28);
+  border: 1px solid rgba(92, 120, 214, 0.26);
 }
 
 .primaryButton:hover,
@@ -163,7 +164,7 @@
 .secondaryButton:hover,
 .secondaryButton:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(92, 120, 214, 0.25);
+  box-shadow: 0 14px 28px rgba(92, 120, 214, 0.22);
 }
 
 .secondaryButton:focus-visible,
@@ -193,16 +194,16 @@
 }
 
 .infoPanel {
-  min-width: clamp(200px, 26vw, 260px);
+  min-width: clamp(200px, 24vw, 250px);
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: clamp(18px, 2.4vw, 26px);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(92, 120, 214, 0.2);
-  box-shadow: 0 24px 48px rgba(22, 36, 74, 0.18);
+  padding: clamp(18px, 2.2vw, 24px);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(92, 120, 214, 0.18);
+  box-shadow: 0 18px 32px rgba(22, 36, 74, 0.16);
 }
 
 .infoBlock {

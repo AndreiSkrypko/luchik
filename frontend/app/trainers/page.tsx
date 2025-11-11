@@ -136,15 +136,6 @@ export default function TrainersPage() {
                 ))}
               </ul>
 
-              <motion.div
-                className={styles.footerNote}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-              >
-                Новые тренажеры уже в разработке — скоро здесь появятся свежие направления!
-              </motion.div>
-
               <Link
                 href={`/trainers/${trainer.id}`}
                 className={styles.cardLink}
