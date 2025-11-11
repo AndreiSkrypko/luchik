@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,6 +8,7 @@ import styles from './page.module.css';
 
 const modules = [
   {
+    slug: 'fading-text',
     title: 'Тренажер «Исчезающий текст»',
     description:
       'Упражнение помогает развивать скорость и технику чтения: ребёнку нужно успеть прочитать фразу до того, как она исчезнет. Время показа каждого слова одинаковое, что тренирует внимательность и ускоряет восприятие.',
@@ -15,6 +17,7 @@ const modules = [
     link: 'https://example.com/trainers/fading-text'
   },
   {
+    slug: 'schulte-table',
     title: 'Тренажер «Таблица Шульте»',
     description:
       'Классическая таблица Шульте учит концентрироваться и держать взгляд на всей поверхности поля. Нужно последовательно нажимать числа по возрастанию — регулярные тренировки расширяют зрительный кругозор и повышают скорость чтения.',
@@ -23,6 +26,7 @@ const modules = [
     link: 'https://example.com/trainers/schulte'
   },
   {
+    slug: 'stroop-test',
     title: 'Тренажер «Тест Струпа»',
     description:
       'Карточки с названиями цветов, написанными разными оттенками, заставляют мозг быстро подбирать правильный ответ. Это упражнение развивает переключаемость внимания и быстрое принятие решений при чтении.',
@@ -31,6 +35,7 @@ const modules = [
     link: 'https://example.com/trainers/stroop'
   },
   {
+    slug: 'flash-words',
     title: 'Тренажер «Флеш-слова»',
     description:
       'На экране всплывают слова с заданной скоростью. Их нужно запомнить и воспроизвести в той же последовательности. Тренажер укрепляет кратковременную память, концентрацию и устойчивость внимания.',
@@ -39,6 +44,7 @@ const modules = [
     link: 'https://example.com/trainers/flash-words'
   },
   {
+    slug: 'distribute-words',
     title: 'Тренажер «Распредели слова»',
     description:
       'Нужно быстро разложить слова по заданным категориям. Задание прокачивает умение анализировать, классифицировать информацию и принимать решения на скорости — навыки незаменимы и в учебе, и в жизни.',
@@ -47,6 +53,7 @@ const modules = [
     link: 'https://example.com/trainers/distribute-words'
   },
   {
+    slug: 'brain-buttons',
     title: 'Тренажер «Кнопки мозга»',
     description:
       'На экране мелькают ладошки с разными жестами, которые нужно тут же повторять. Тренажер соединяет умственные и физические реакции, развивает ловкость, реактивность и координацию.',
@@ -73,7 +80,7 @@ export default function SpeedReadingPage() {
 
         <section className={styles.trainers}>
           {modules.map((module) => (
-            <article key={module.title} className={styles.card}>
+            <article key={module.slug} className={styles.card}>
               <div className={styles.cardMedia}>
                 <Image
                   src={module.image}
@@ -85,13 +92,13 @@ export default function SpeedReadingPage() {
               </div>
 
               <div className={styles.cardBody}>
-                <h2>{module.title}</h2>
-                <p className={styles.cardSubtitle}>{module.description}</p>
-                <div className={styles.cardFooter}>
-                  <a href={module.link} className={styles.cardButton} target="_blank" rel="noopener noreferrer">
-                    Запустить тренажер
-                  </a>
-                </div>
+                 <h2>{module.title}</h2>
+                 <p className={styles.cardSubtitle}>{module.description}</p>
+                 <div className={styles.cardFooter}>
+                   <Link href={`/trainers/speed-reading/${module.slug}`} className={styles.cardButton}>
+                     Запустить тренажер
+                   </Link>
+                 </div>
               </div>
             </article>
           ))}
