@@ -668,9 +668,6 @@ export default function DistributeWordsPage() {
             >
               <header className={styles.wordPanelHeader}>
                 <h2>Нераспределённые слова</h2>
-                <span className={styles.wordCounter}>
-                  {wordPool.length} / {shuffledWords.length}
-                </span>
               </header>
 
               <div className={styles.wordBank}>
