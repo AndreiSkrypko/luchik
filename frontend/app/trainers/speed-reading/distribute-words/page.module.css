@@ -105,10 +105,8 @@
 
 .controls {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 16px;
-  align-items: center;
-  justify-content: space-between;
   padding: 16px 20px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.9);
@@ -116,17 +114,47 @@
   box-shadow: 0 14px 28px rgba(92, 120, 214, 0.14);
 }
 
-.controlsHeader {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-  align-items: start;
+.countRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.roundSelector {
+.countRow .wordCountScale {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: rgba(38, 64, 119, 0.6);
+}
+
+.themeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.themeFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.themeColumn {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.themeColumnTitle {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(38, 64, 119, 0.65);
 }
 
 .roundTabOptions {
@@ -170,29 +198,28 @@
   box-shadow: 0 16px 28px rgba(92, 120, 214, 0.2);
 }
 
-.controlsColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.controlGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .wordSliderRow {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 8px;
+  display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .wordCountControl {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.wordCountValue {
+  font-weight: 700;
+  color: #264077;
+}
+
+.wordCountScale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: rgba(38, 64, 119, 0.6);
 }
 
 .wordCountHeader {
@@ -340,16 +367,6 @@
   box-shadow: 0 16px 32px rgba(92, 120, 214, 0.2);
 }
 
-.roundDescription {
-  padding: 0.9rem 1.1rem;
-  border-radius: 16px;
-  background: rgba(24, 162, 160, 0.08);
-  border: 1px solid rgba(24, 162, 160, 0.18);
-  color: rgba(24, 108, 108, 0.85);
-  font-size: 0.92rem;
-  line-height: 1.55;
-}
-
 .tips {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -462,6 +479,13 @@
 
 .stageActive {
   box-shadow: 0 26px 48px rgba(22, 36, 74, 0.2);
+}
+
+.inlineActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .stageContent {
@@ -920,9 +944,9 @@
 
 .themeDescription {
   margin: 0;
-  font-size: 0.86rem;
-  color: rgba(38, 64, 119, 0.68);
+  font-size: 0.9rem;
   line-height: 1.5;
+  color: rgba(38, 64, 119, 0.68);
 }
 
 @media (max-width: 980px) {
@@ -955,8 +979,13 @@
 }
 
 @media (max-width: 760px) {
-  .controlsColumn {
-    gap: 12px;
+  .countRow {
+    gap: 10px;
+  }
+
+  .themeFooter {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 

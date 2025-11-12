@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import styles from './page.module.css';
 
 type GameState = 'idle' | 'running' | 'completed';
+type ThemeDifficulty = 'basic' | 'intermediate' | 'advanced';
 
 interface Theme {
   id: string;
@@ -18,6 +19,7 @@ interface Theme {
   description: string;
   leftWords: string[];
   rightWords: string[];
+  difficulty: ThemeDifficulty;
 }
 
 interface FeedbackMessage {
@@ -35,7 +37,8 @@ const THEMES: Theme[] = [
     rightIcon: '🚫',
     description: 'Разложите продукты и предметы в верные колонки.',
     leftWords: ['яблоко', 'суп', 'хлеб', 'морковь', 'сыр', 'каша', 'клубника', 'компот', 'салат', 'омлет'],
-    rightWords: ['пластилин', 'гвоздь', 'стекло', 'батарейка', 'песок', 'мыло', 'мел', 'пластик', 'пуговица', 'резинка']
+    rightWords: ['пластилин', 'гвоздь', 'стекло', 'батарейка', 'песок', 'мыло', 'мел', 'пластик', 'пуговица', 'резинка'],
+    difficulty: 'basic'
   },
   {
     id: 'winter-summer',
@@ -46,7 +49,20 @@ const THEMES: Theme[] = [
     rightIcon: '🌞',
     description: 'Ассоциируйте слова с холодным и тёплым временем года.',
     leftWords: ['санки', 'варежки', 'сугроб', 'ёлка', 'коньки', 'мороз', 'льдинка', 'снеговик', 'шарф', 'печенье с корицей'],
-    rightWords: ['купальник', 'пляж', 'шляпа', 'велосипед', 'фонтан', 'каникулы', 'арбуз', 'крем от солнца', 'ягоды', 'палатка']
+    rightWords: ['купальник', 'пляж', 'шляпа', 'велосипед', 'фонтан', 'каникулы', 'арбуз', 'крем от солнца', 'ягоды', 'палатка'],
+    difficulty: 'basic'
+  },
+  {
+    id: 'home-street',
+    title: 'Дом — улица',
+    leftLabel: 'Дома',
+    rightLabel: 'На улице',
+    leftIcon: '🏠',
+    rightIcon: '🚦',
+    description: 'Распределите предметы, которые встречаются дома или на улице.',
+    leftWords: ['подушка', 'диван', 'ковёр', 'чайник', 'кровать', 'колонка', 'полка', 'штора', 'настольная лампа', 'телевизор'],
+    rightWords: ['лавочка', 'фонарь', 'тротуар', 'скамейка', 'велодорожка', 'переход', 'детская площадка', 'урна', 'газон', 'парк'],
+    difficulty: 'basic'
   },
   {
     id: 'bird-animal',
@@ -57,7 +73,8 @@ const THEMES: Theme[] = [
     rightIcon: '🦊',
     description: 'Пернатые и четвероногие — разделите представителей мира природы.',
     leftWords: ['ласточка', 'журавль', 'сова', 'воробей', 'чайка', 'голубь', 'аист', 'утка', 'скворец', 'попугай'],
-    rightWords: ['тигр', 'лиса', 'собака', 'кошка', 'олень', 'ёж', 'белка', 'кенгуру', 'корова', 'медведь']
+    rightWords: ['тигр', 'лиса', 'собака', 'кошка', 'олень', 'ёж', 'белка', 'кенгуру', 'корова', 'медведь'],
+    difficulty: 'intermediate'
   },
   {
     id: 'flower-tree',
@@ -68,7 +85,20 @@ const THEMES: Theme[] = [
     rightIcon: '🌳',
     description: 'Определите, где растения со стеблем, а где со стволом.',
     leftWords: ['роза', 'ромашка', 'тюльпан', 'лилия', 'василёк', 'пион', 'сирень', 'астра', 'георгин', 'нарцисс'],
-    rightWords: ['дуб', 'берёза', 'сосна', 'ель', 'клён', 'липа', 'каштан', 'тополь', 'рябина', 'яблоня']
+    rightWords: ['дуб', 'берёза', 'сосна', 'ель', 'клён', 'липа', 'каштан', 'тополь', 'рябина', 'яблоня'],
+    difficulty: 'intermediate'
+  },
+  {
+    id: 'music-sport',
+    title: 'Музыка — спорт',
+    leftLabel: 'Музыка',
+    rightLabel: 'Спорт',
+    leftIcon: '🎵',
+    rightIcon: '🏆',
+    description: 'Отнесите слова к миру музыки или спорта.',
+    leftWords: ['оркестр', 'нота', 'гитара', 'дирижёр', 'мелодия', 'пианино', 'концерт', 'скрипка', 'бас-гитара', 'метроном'],
+    rightWords: ['турнир', 'матч', 'баскетбол', 'спортзал', 'команда', 'тренер', 'футбол', 'победа', 'старт', 'гимнастика'],
+    difficulty: 'intermediate'
   },
   {
     id: 'solid-liquid',
@@ -79,8 +109,39 @@ const THEMES: Theme[] = [
     rightIcon: '💧',
     description: 'Разделите вещества по состоянию.',
     leftWords: ['камень', 'кирпич', 'стекло', 'мрамор', 'дерево', 'соль', 'сахар', 'мел', 'глина', 'бетон'],
-    rightWords: ['вода', 'молоко', 'сок', 'бензин', 'масло', 'лимонад', 'чернила', 'кефир', 'сироп', 'суп']
+    rightWords: ['вода', 'молоко', 'сок', 'бензин', 'масло', 'лимонад', 'чернила', 'кефир', 'сироп', 'суп'],
+    difficulty: 'advanced'
+  },
+  {
+    id: 'emotion-action',
+    title: 'Эмоция — действие',
+    leftLabel: 'Эмоции',
+    rightLabel: 'Действия',
+    leftIcon: '😊',
+    rightIcon: '⚡',
+    description: 'Определите, где чувства, а где активные действия.',
+    leftWords: ['радость', 'грусть', 'злость', 'удивление', 'восхищение', 'усталость', 'интерес', 'спокойствие', 'тревога', 'вера'],
+    rightWords: ['бежать', 'создавать', 'изучать', 'прыгать', 'помогать', 'направлять', 'убеждать', 'играть', 'обсуждать', 'мечтать'],
+    difficulty: 'advanced'
+  },
+  {
+    id: 'fact-opinion',
+    title: 'Факт — мнение',
+    leftLabel: 'Факты',
+    rightLabel: 'Мнения',
+    leftIcon: '📊',
+    rightIcon: '💬',
+    description: 'Разделите утверждения на проверяемые факты и субъективные мнения.',
+    leftWords: ['вода кипит при 100°', 'Земля вращается', 'Москва столица', 'кошка — млекопитающее', 'снег белый', 'солнце — звезда', 'яблоко — фрукт', 'золото — металл', 'звук распространяется в воздухе', 'книги состоят из страниц'],
+    rightWords: ['лучший фильм года', 'самая вкусная еда — пицца', 'зима красивее лета', 'утро лучше вечера', 'играть приятнее учиться', 'громкая музыка мешает', 'футбол интереснее баскетбола', 'осень — унылая пора', 'математика сложная', 'город лучше деревни'],
+    difficulty: 'advanced'
   }
+];
+
+const THEME_GROUPS: Array<{ id: ThemeDifficulty; title: string }> = [
+  { id: 'basic', title: 'Простые темы' },
+  { id: 'intermediate', title: 'Посложнее' },
+  { id: 'advanced', title: 'Сложные' }
 ];
 
 const shuffle = <T,>(items: T[]): T[] => {
@@ -122,13 +183,21 @@ export default function DistributeWordsPage() {
   const [shuffledWords, setShuffledWords] = useState<string[]>(() =>
     shuffle([...THEMES[0].leftWords, ...THEMES[0].rightWords]).slice(0, 12)
   );
-  const [showPreview, setShowPreview] = useState<boolean>(false);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const timerRef = useRef<number | null>(null);
   const startTimestampRef = useRef<number | null>(null);
   const gameStateRef = useRef<GameState>('idle');
  
   const theme = useMemo(() => THEMES.find((item) => item.id === themeId) ?? THEMES[0], [themeId]);
+
+  const themeGroups = useMemo(
+    () =>
+      THEME_GROUPS.map((group) => ({
+        ...group,
+        items: THEMES.filter((item) => item.difficulty === group.id)
+      })).filter((group) => group.items.length > 0),
+    []
+  );
  
   const activeLeftWords = useMemo(() => theme.leftWords, [theme]);
   const activeRightWords = useMemo(() => theme.rightWords, [theme]);
@@ -502,12 +571,33 @@ export default function DistributeWordsPage() {
         </section>
 
         <section className={styles.controls}>
-          <div className={styles.controlsHeader}>
-            <div className={styles.controlsColumn}>
-              <div className={styles.controlGroup}>
-                <span className={styles.roundLabel}>Темы</span>
+          <div className={styles.countRow}>
+            <span className={styles.roundLabel}>Количество слов</span>
+            <div className={styles.wordSliderRow}>
+              <input
+                type="range"
+                min={minSelectableWords || 0}
+                max={maxSelectableWords || 0}
+                step={1}
+                value={hasAvailableWords ? wordLimit : 0}
+                disabled={!hasAvailableWords || gameState === 'running'}
+                onChange={(event) => setWordLimit(Number(event.target.value))}
+                className={styles.wordSlider}
+              />
+              <span className={styles.wordCountValue}>{hasAvailableWords ? `${effectiveWordLimit}` : '—'}</span>
+            </div>
+            <div className={styles.wordCountScale}>
+              <span>{hasAvailableWords ? minSelectableWords : '—'}</span>
+              <span>{hasAvailableWords ? maxSelectableWords : '—'}</span>
+            </div>
+          </div>
+
+          <div className={styles.themeGrid}>
+            {themeGroups.map((group) => (
+              <div key={group.id} className={styles.themeColumn}>
+                <h3 className={styles.themeColumnTitle}>{group.title}</h3>
                 <div className={styles.roundTabOptions}>
-                  {THEMES.map((item) => (
+                  {group.items.map((item) => (
                     <button
                       key={item.id}
                       type="button"
@@ -517,7 +607,6 @@ export default function DistributeWordsPage() {
                           return;
                         }
                         setThemeId(item.id);
-                        setShowPreview(false);
                       }}
                     >
                       <span className={styles.roundChipTitle}>{item.title}</span>
@@ -525,85 +614,13 @@ export default function DistributeWordsPage() {
                   ))}
                 </div>
               </div>
-
-              <div className={styles.roundSelector}>
-                <p className={styles.themeDescription}>{theme.description}</p>
-              </div>
-            </div>
-
-            <div className={styles.controlsColumn}>
-              <div className={styles.controlGroup}>
-                <span className={styles.roundLabel}>Слова</span>
-                <div className={styles.wordSliderRow}>
-                  <input
-                    type="range"
-                    min={minSelectableWords || 0}
-                    max={maxSelectableWords || 0}
-                    step={1}
-                    value={hasAvailableWords ? wordLimit : 0}
-                    disabled={!hasAvailableWords || gameState === 'running'}
-                    onChange={(event) => setWordLimit(Number(event.target.value))}
-                    className={styles.wordSlider}
-                  />
-                  <span className={styles.wordCountValue}>
-                    {hasAvailableWords ? `${effectiveWordLimit}` : '—'}
-                  </span>
-                </div>
-                <div className={styles.wordCountScale}>
-                  <span>{hasAvailableWords ? minSelectableWords : '—'}</span>
-                  <span>{hasAvailableWords ? maxSelectableWords : '—'}</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          <button
-            type="button"
-            className={styles.previewToggle}
-            onClick={() => setShowPreview((prev) => !prev)}
-            aria-expanded={showPreview}
-          >
-            {showPreview ? 'Скрыть слова' : 'Посмотреть слова по категориям'}
-          </button>
-
-          {showPreview && (
-            <div className={styles.previewPanel}>
-              <div className={styles.previewColumn}>
-                <div className={styles.previewHeader}>
-                  <span className={styles.previewIcon}>{theme.leftIcon}</span>
-                  <div>
-                    <h4>{theme.leftLabel}</h4>
-                  </div>
-                </div>
-                <ul>
-                  {theme.leftWords.map((word) => (
-                    <li key={`${theme.id}-left-${word}`}>{word}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className={styles.previewColumn}>
-                <div className={styles.previewHeader}>
-                  <span className={styles.previewIcon}>{theme.rightIcon}</span>
-                  <div>
-                    <h4>{theme.rightLabel}</h4>
-                  </div>
-                </div>
-                <ul>
-                  {theme.rightWords.map((word) => (
-                    <li key={`${theme.id}-right-${word}`}>{word}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )}
-
-          <div className={styles.roundDescription}>
-            <p>Разложите все слова в две колонки. После проверки увидите правильные ответы и категорию.</p>
-          </div>
-
-          <div className={styles.actions}>
+          <div className={styles.themeFooter}>
+            <p className={styles.themeDescription}>{theme.description}</p>
             {gameState === 'running' ? (
-              <>
+              <div className={styles.inlineActions}>
                 <button
                   type="button"
                   className={styles.primaryButton}
@@ -615,7 +632,7 @@ export default function DistributeWordsPage() {
                 <button type="button" className={styles.secondaryButton} onClick={handleReset}>
                   Сбросить
                 </button>
-              </>
+              </div>
             ) : (
               <button type="button" className={styles.primaryButton} onClick={handleStart}>
                 {gameState === 'completed' ? 'Играть ещё раз' : 'Начать тренировку'}
@@ -750,6 +767,12 @@ export default function DistributeWordsPage() {
                 );
               })}
             </div>
+          </div>
+
+          <div className={styles.stageActions}>
+            <button type="button" className={styles.secondaryButton} onClick={handleReset}>
+              Сбросить
+            </button>
           </div>
         </section>
 
