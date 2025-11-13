@@ -2,14 +2,14 @@
   --color-sky-light: #e5ecff;
   --color-sky-mid: #d6ddff;
   --color-sky-deep: #91b3ff;
-  --color-sun: #e96a12;
+  --color-sun: #f6b93b;
   --color-royal: #264077;
   --color-text: #264077;
   --color-muted: #3f55a5;
   --color-card: #ffffff;
   --color-shadow: rgba(50, 83, 166, 0.12);
-  --color-outline: rgba(233, 106, 18, 0.4);
-  --brand-accent: #e96a12;
+  --color-outline: rgba(246, 185, 59, 0.45);
+  --brand-accent: #f6b93b;
   --radius-lg: 24px;
   --radius-md: 18px;
   --radius-sm: 12px;
@@ -32,7 +32,13 @@ body {
 body {
   min-height: 100vh;
   font-family: var(--font-primary);
-  background: linear-gradient(180deg, rgba(229, 236, 255, 0.9) 0%, rgba(220, 228, 255, 0.95) 45%, rgba(255, 221, 171, 0.9) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(229, 236, 255, 0.9) 0%,
+    rgba(250, 236, 190, 0.92) 42%,
+    rgba(255, 231, 160, 0.94) 70%,
+    rgba(255, 220, 110, 0.95) 100%
+  );
   color: var(--color-text);
   line-height: 1.65;
   font-weight: 500;

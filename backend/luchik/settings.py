@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'trainers',
     'trainers_fading_text',
+    'trainers_flash_cards',
     'trainers_schulte_table',
     'trainers_stroop',
     'api',

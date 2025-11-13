@@ -48,7 +48,179 @@ interface TrainerDetail {
   difficulties: Difficulty[];
 }
 
+interface QuestionOption {
+  id: string;
+  text: string;
+  isCorrect: boolean;
+}
+
+interface Question {
+  id: string;
+  prompt: string;
+  options: QuestionOption[];
+}
+
 const BASE_API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:8000';
+
+const QUESTIONS_BY_DIFFICULTY: Record<string, Question[]> = {
+  'Зимой — 10 слов(а)': [
+    {
+      id: 'q1',
+      prompt: 'Что делает зайка в тексте?',
+      options: [
+        { id: 'q1o1', text: 'Спит на санках', isCorrect: true },
+        { id: 'q1o2', text: 'Катится с горки', isCorrect: false },
+        { id: 'q1o3', text: 'Несёт санки домой', isCorrect: false }
+      ]
+    },
+    {
+      id: 'q2',
+      prompt: 'Кому принадлежат санки?',
+      options: [
+        { id: 'q2o1', text: 'Зайке', isCorrect: false },
+        { id: 'q2o2', text: 'Зине', isCorrect: true },
+        { id: 'q2o3', text: 'Соседу', isCorrect: false }
+      ]
+    },
+    {
+      id: 'q3',
+      prompt: 'Какое время года описано в тексте?',
+      options: [
+        { id: 'q3o1', text: 'Зима', isCorrect: true },
+        { id: 'q3o2', text: 'Весна', isCorrect: false },
+        { id: 'q3o3', text: 'Осень', isCorrect: false }
+      ]
+    }
+  ]
+};
+
+const MIN_QUESTION_COUNT = 3;
+const MAX_QUESTION_COUNT = 10;
+const DISTRACTOR_WORDS = ['книжка', 'огурец', 'машина', 'зебра', 'фонарик', 'чайник', 'пальма', 'струна'];
+const ALT_NAMES = ['Маша', 'Петя', 'Игорь', 'Света', 'Ваня', 'Таня', 'Гоша', 'Лена'];
+const DEFAULT_ACTIONS = ['катается на санках', 'читает книгу', 'наблюдает за птицами', 'играет в мяч', 'гуляет по парку'];
+const STOP_WORDS = new Set([
+  'в',
+  'на',
+  'и',
+  'а',
+  'но',
+  'к',
+  'у',
+  'по',
+  'за',
+  'под',
+  'через',
+  'с',
+  'со',
+  'как',
+  'если',
+  'что',
+  'это',
+  'этот',
+  'эта',
+  'эту',
+  'тот',
+  'там',
+  'тут',
+  'у',
+  'из',
+  'во',
+  'от',
+  'для',
+  'же'
+]);
+
+const randomFrom = <T,>(items: T[], fallback: T): T =>
+  items.length > 0 ? items[Math.floor(Math.random() * items.length)] : fallback;
+
+const ensureEnding = (sentence: string) => {
+  const trimmed = sentence.trim();
+  return /[.!?]$/.test(trimmed) ? trimmed : `${trimmed}.`;
+};
+
+const createOption = (id: string, text: string, isCorrect = false): QuestionOption => ({
+  id,
+  text: ensureEnding(text),
+  isCorrect
+});
+
+const replaceNames = (sentence: string) => {
+  const words = sentence.split(/\s+/);
+  const replaced = words.map((word) => {
+    const base = word.replace(/[«»"(),.?!;:]/g, '');
+    if (!base) return word;
+    if (/^[А-ЯЁ]/.test(base)) {
+      const filtered = ALT_NAMES.filter((name) => name !== base);
+      const replacement = randomFrom(filtered, ALT_NAMES[0]);
+      return word.replace(base, replacement);
+    }
+    return word;
+  });
+  return replaced.join(' ');
+};
+
+const replaceKeyword = (sentence: string) => {
+  const words = sentence.split(/\s+/);
+  for (let i = 0; i < words.length; i++) {
+    const bare = words[i].replace(/[«»"(),.?!;:]/g, '').toLowerCase();
+    if (bare.length > 3 && !STOP_WORDS.has(bare)) {
+      const replacement = randomFrom(DISTRACTOR_WORDS, DISTRACTOR_WORDS[0]);
+      words[i] = replacement;
+      return words.join(' ');
+    }
+  }
+  return sentence;
+};
+
+const fallbackStatement = () =>
+  `В тексте говорится, что ${randomFrom(ALT_NAMES, ALT_NAMES[0])} ${randomFrom(DEFAULT_ACTIONS, DEFAULT_ACTIONS[0])}.`;
+
+const buildQuestionsFromText = (difficulty: Difficulty): Question[] => {
+  const sentences =
+    difficulty.sampleText
+      .match(/[^.!?]+[.!?]*/g)
+      ?.map((sentence) => sentence.trim())
+      .filter((sentence) => sentence.length > 3) ?? [];
+
+  if (!sentences.length) {
+    return [];
+  }
+
+  const limit = Math.min(MAX_QUESTION_COUNT, Math.max(MIN_QUESTION_COUNT, sentences.length));
+  const questions: Question[] = [];
+
+  for (let i = 0; i < limit; i++) {
+    const sentence = sentences[i % sentences.length];
+    const correct = sentence;
+    let optionB = replaceNames(sentence);
+    if (optionB.trim() === correct.trim()) {
+      optionB = fallbackStatement();
+    }
+    let optionC = replaceKeyword(sentence);
+    if (optionC.trim() === correct.trim() || optionC.trim() === optionB.trim()) {
+      optionC = fallbackStatement();
+    }
+
+    const options = [
+      createOption(`${difficulty.id}-opt-${i}-a`, correct, true),
+      createOption(`${difficulty.id}-opt-${i}-b`, optionB, false),
+      createOption(`${difficulty.id}-opt-${i}-c`, optionC, false)
+    ];
+
+    questions.push({
+      id: `${difficulty.id}-sense-${i}`,
+      prompt: 'Выберите утверждение, которое соответствует тексту.',
+      options
+    });
+  }
+
+  return questions;
+};
+
+const resolveQuestionsForDifficulty = (difficulty: Difficulty) => {
+  return QUESTIONS_BY_DIFFICULTY[difficulty.title] ?? buildQuestionsFromText(difficulty);
+};
 
 export default function TrainerDetailPage() {
   const params = useParams<{ slug: string }>();
@@ -64,9 +236,15 @@ export default function TrainerDetailPage() {
   const [isRunning, setIsRunning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [questions, setQuestions] = useState<Question[] | null>(null);
+  const [showQuestions, setShowQuestions] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, Set<string>>>({});
+  const [score, setScore] = useState<number | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const textContainerRef = useRef<HTMLDivElement | null>(null);
   const scrollAnimationRef = useRef<number | null>(null);
+
+  const isReadingComplete = words.length > 0 && hiddenCount >= words.length;
 
   useEffect(() => {
     let isMounted = true;
@@ -154,6 +332,52 @@ export default function TrainerDetailPage() {
     setSpeed(parseFloat(event.target.value));
   };
 
+  const handleToggleQuestion = () => {
+    if (!questions?.length) {
+      return;
+    }
+    setShowQuestions(true);
+  };
+
+  const handleOptionToggle = (questionId: string, optionId: string) => {
+    setSelectedOptions((prev) => {
+      const current = new Set(prev[questionId] ?? []);
+      if (current.has(optionId)) {
+        current.delete(optionId);
+      } else {
+        current.add(optionId);
+      }
+      return { ...prev, [questionId]: current };
+    });
+  };
+
+  const handleCheckAnswers = () => {
+    if (!questions?.length) {
+      return;
+    }
+
+    let correctCount = 0;
+
+    questions.forEach((question) => {
+      const correctIds = new Set(question.options.filter((option) => option.isCorrect).map((option) => option.id));
+      const selected = selectedOptions[question.id] ?? new Set<string>();
+
+      const correctArray = Array.from(correctIds);
+      const selectedArray = Array.from(selected);
+
+      const selectedMatchesCorrect =
+        correctIds.size === selected.size &&
+        correctArray.every((correctId) => selected.has(correctId)) &&
+        selectedArray.every((selectedId) => correctIds.has(selectedId));
+
+      if (selectedMatchesCorrect) {
+        correctCount += 1;
+      }
+    });
+
+    setScore(Math.round((correctCount / questions.length) * 100));
+  };
+
   const splitIntoWords = (text: string) => text.trim().split(/\s+/);
 
   const beginDifficulty = (difficulty: Difficulty) => {
@@ -172,6 +396,10 @@ export default function TrainerDetailPage() {
     setIsRunning(true);
     setIsPaused(false);
     setIsModalOpen(true);
+    setQuestions(resolveQuestionsForDifficulty(difficulty));
+    setShowQuestions(false);
+    setSelectedOptions({});
+    setScore(null);
     requestAnimationFrame(() => {
       if (textContainerRef.current) {
         textContainerRef.current.scrollTo({ top: 0, behavior: 'auto' });
@@ -205,6 +433,9 @@ export default function TrainerDetailPage() {
     setHiddenCount(0);
     setIsRunning(true);
     setIsPaused(false);
+    setShowQuestions(false);
+    setSelectedOptions({});
+    setScore(null);
     requestAnimationFrame(() => {
       if (textContainerRef.current) {
         textContainerRef.current.scrollTo({ top: 0, behavior: 'auto' });
@@ -270,6 +501,10 @@ export default function TrainerDetailPage() {
       cancelAnimationFrame(scrollAnimationRef.current);
       scrollAnimationRef.current = null;
     }
+    setQuestions(null);
+    setShowQuestions(false);
+    setSelectedOptions({});
+    setScore(null);
   };
 
   useEffect(() => {
@@ -383,7 +618,7 @@ export default function TrainerDetailPage() {
                         className={styles.startButton}
                         onClick={() => beginDifficulty(difficulty)}
                       >
-                        Открыть тренировку
+                        Запустить тренажер
                       </button>
                     </div>
                   </article>
@@ -454,9 +689,67 @@ export default function TrainerDetailPage() {
               <button type="button" className={styles.controlButtonSecondary} onClick={handleRestart}>
                 Сначала
               </button>
-              <button type="button" className={styles.controlButtonSecondary}>
-                Вопросы
+              {isReadingComplete && questions?.length && (
+                <button type="button" className={styles.controlButtonSecondary} onClick={handleToggleQuestion}>
+                  Вопросы
+                </button>
+              )}
+            </footer>
+
+          </div>
+        </div>
+      )}
+
+      {showQuestions && questions?.length && (
+        <div className={styles.questionsOverlay} role="dialog" aria-modal="true">
+          <div className={styles.questionsModal}>
+            <header className={styles.questionsHeader}>
+              <h3 className={styles.questionsTitle}>Проверь себя</h3>
+              <button
+                type="button"
+                className={styles.questionsClose}
+                onClick={() => {
+                  setShowQuestions(false);
+                  setSelectedOptions({});
+                  setScore(null);
+                }}
+                aria-label="Закрыть вопросы"
+              >
+                ×
               </button>
+            </header>
+            <p className={styles.questionsHint}>
+              Отметьте правильные ответы и нажмите «Проверить ответы», чтобы узнать результат.
+            </p>
+            <div className={styles.questionsList}>
+              {questions.map((question) => (
+                <article key={question.id} className={styles.questionCard}>
+                  <h4>{question.prompt}</h4>
+                  <ul>
+                    {question.options.map((option) => {
+                      const checked = selectedOptions[question.id]?.has(option.id) ?? false;
+                      return (
+                        <li key={option.id}>
+                          <label>
+                            <input
+                              type="checkbox"
+                              checked={checked}
+                              onChange={() => handleOptionToggle(question.id, option.id)}
+                            />
+                            <span>{option.text}</span>
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </article>
+              ))}
+            </div>
+            <footer className={styles.questionsActions}>
+              <button type="button" className={styles.controlButton} onClick={handleCheckAnswers}>
+                Проверить ответы
+              </button>
+              {score !== null && <span className={styles.questionsScore}>Верно: {score}%</span>}
             </footer>
           </div>
         </div>

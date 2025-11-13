@@ -14,7 +14,7 @@ const modules = [
       'Упражнение помогает развивать скорость и технику чтения: ребёнку нужно успеть прочитать фразу до того, как она исчезнет. Время показа каждого слова одинаковое, что тренирует внимательность и ускоряет восприятие.',
     mediaLabel: 'Изображение для тренажера «Исчезающий текст»',
     image: '/images/trainers/speed-reading/fading-text.svg',
-    link: 'https://example.com/trainers/fading-text'
+    link: '/trainers/speed-reading/fading-text'
   },
   {
     slug: 'schulte-table',
@@ -23,7 +23,7 @@ const modules = [
       'Классическая таблица Шульте учит концентрироваться и держать взгляд на всей поверхности поля. Нужно последовательно нажимать числа по возрастанию — регулярные тренировки расширяют зрительный кругозор и повышают скорость чтения.',
     mediaLabel: 'Изображение для таблицы Шульте',
     image: '/images/trainers/speed-reading/schulte-table.svg',
-    link: 'https://example.com/trainers/schulte'
+    link: '/trainers/speed-reading/schulte-table'
   },
   {
     slug: 'stroop-test',
@@ -32,7 +32,7 @@ const modules = [
       'Карточки с названиями цветов, написанными разными оттенками, заставляют мозг быстро подбирать правильный ответ. Это упражнение развивает переключаемость внимания и быстрое принятие решений при чтении.',
     mediaLabel: 'Изображение для теста Струпа',
     image: '/images/trainers/speed-reading/stroop-test.svg',
-    link: 'https://example.com/trainers/stroop'
+    link: '/trainers/speed-reading/stroop-test'
   },
   {
     slug: 'flash-words',
@@ -41,7 +41,7 @@ const modules = [
       'На экране всплывают слова с заданной скоростью. Их нужно запомнить и воспроизвести в той же последовательности. Тренажер укрепляет кратковременную память, концентрацию и устойчивость внимания.',
     mediaLabel: 'Изображение для тренажера «Флеш-слова»',
     image: '/images/trainers/speed-reading/flash-words.svg',
-    link: 'https://example.com/trainers/flash-words'
+    link: '/trainers/speed-reading/flash-words'
   },
   {
     slug: 'distribute-words',
@@ -50,7 +50,7 @@ const modules = [
       'Нужно быстро разложить слова по заданным категориям. Задание прокачивает умение анализировать, классифицировать информацию и принимать решения на скорости — навыки незаменимы и в учебе, и в жизни.',
     mediaLabel: 'Изображение для тренажера «Распредели слова»',
     image: '/images/trainers/speed-reading/distribute-words.svg',
-    link: 'https://example.com/trainers/distribute-words'
+    link: '/trainers/speed-reading/distribute-words'
   },
   {
     slug: 'brain-buttons',

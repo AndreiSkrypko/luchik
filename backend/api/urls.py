@@ -11,6 +11,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('', include('trainers.urls')),
     path('trainers/schulte-table/', include('trainers_schulte_table.urls')),
+    path('trainers/flash-cards/', include('trainers_flash_cards.urls')),
     path('trainers/stroop-test/', include('trainers_stroop.urls')),
     path('home/', home_data, name='home-data'),
 ]
