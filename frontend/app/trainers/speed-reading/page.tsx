@@ -59,7 +59,7 @@ const modules = [
       'На экране мелькают ладошки с разными жестами, которые нужно тут же повторять. Тренажер соединяет умственные и физические реакции, развивает ловкость, реактивность и координацию.',
     mediaLabel: 'Изображение для тренажера «Кнопки мозга»',
     image: '/images/trainers/speed-reading/brain-buttons.svg',
-    link: 'https://example.com/trainers/brain-buttons'
+    link: '/trainers/speed-reading/brain-buttons'
   },
 ];
 
