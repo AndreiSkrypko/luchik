@@ -10,9 +10,9 @@
 .main {
   flex: 1;
   width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 32px 20px 48px;
+  max-width: none;
+  margin: 0;
+  padding: 40px clamp(24px, 6vw, 80px) 60px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -105,21 +105,50 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  color: rgba(38, 64, 119, 0.78);
-  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: rgba(38, 64, 119, 0.78);
 }
 
 .sizeSelector input[type='range'] {
   width: 180px;
-  accent-color: #5c78d6;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(92, 120, 214, 0.35) 0%, rgba(233, 106, 18, 0.35) 100%);
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.sizeSelector input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: linear-gradient(135deg, #5c78d6 0%, #e96a12 100%);
+  box-shadow: 0 4px 12px rgba(92, 120, 214, 0.3);
+}
+
+.sizeSelector input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: linear-gradient(135deg, #5c78d6 0%, #e96a12 100%);
+  box-shadow: 0 4px 12px rgba(92, 120, 214, 0.3);
 }
 
 .sizeValue {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 0.95rem;
-  color: #264077;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(92, 120, 214, 0.14);
+  color: #5c78d6;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .actions {

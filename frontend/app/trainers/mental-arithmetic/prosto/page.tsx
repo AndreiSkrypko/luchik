@@ -114,14 +114,17 @@ export default function SimplyTrainerPage() {
   }, []);
 
   const speakNumber = useCallback(
-    (value: number) => {
+    (value: number, speed?: number) => {
       if (!audioEnabled || typeof window === 'undefined' || !window.speechSynthesis) return;
+      
+      // Не озвучиваем, если скорость быстрее 1.5 секунд
+      if (speed !== undefined && speed < 1.5) return;
 
       const utterance = new SpeechSynthesisUtterance();
       const text = value > 0 ? `плюс ${numberToWords(value)}` : numberToWords(value);
       utterance.text = text;
       utterance.lang = 'ru-RU';
-      utterance.rate = 1.7;
+      utterance.rate = 2.5;
       utterance.pitch = 1;
       utterance.volume = 1;
 
@@ -204,7 +207,7 @@ export default function SimplyTrainerPage() {
 
     setCurrentIndex(0);
     if (session.numbers.length > 0) {
-      speakNumber(session.numbers[0].value);
+      speakNumber(session.numbers[0].value, session.settings.speed);
     }
 
     const scheduleNext = (index: number) => {
@@ -215,7 +218,7 @@ export default function SimplyTrainerPage() {
           return;
         }
         setCurrentIndex(nextIndex);
-        speakNumber(session.numbers[nextIndex].value);
+        speakNumber(session.numbers[nextIndex].value, session.settings.speed);
         scheduleNext(nextIndex);
       }, session.settings.speed * 1000);
     };
@@ -225,6 +228,10 @@ export default function SimplyTrainerPage() {
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
+      }
+      // Отменяем озвучку при размонтировании
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
       }
     };
   }, [session, stage, speakNumber]);
@@ -256,11 +263,6 @@ export default function SimplyTrainerPage() {
         <section className={`${styles.layout} ${isSettingsOnly ? styles.layoutSingle : ''}`}>
           <div className={`${styles.settingsColumn} ${isSettingsOnly ? styles.settingsColumnWide : ''}`}>
             <div className={styles.panel}>
-              <div className={styles.panelHeader}>
-                <h2>Настройки тренировки</h2>
-                <p>Выберите сложность, темп и длительность серии. Можно включить озвучку, чтобы тренировать слуховое восприятие.</p>
-              </div>
-
               {stage === 'error' && error && (
                 <div className={styles.errorBanner}>
                   <p>{error}</p>
@@ -436,8 +438,14 @@ export default function SimplyTrainerPage() {
         {stage === 'countdown' && (
           <div className={styles.fullscreenOverlay}>
             <div className={styles.countdownContent}>
-              <p>Игра начнётся через</p>
-              <span className={styles.countdownNumber}>{countdown}</span>
+              <div className={styles.countdownEmoji}>
+                {countdown === 3 ? '🎯' : countdown === 2 ? '🚀' : '✨'}
+              </div>
+              <p className={styles.countdownText}>Игра начнётся через</p>
+              <span className={`${styles.countdownNumber} ${styles.countdownPulse}`}>{countdown}</span>
+              <p className={styles.countdownHint}>
+                {countdown === 3 ? 'Приготовься!' : countdown === 2 ? 'Внимание!' : 'Начинаем!'}
+              </p>
               <button className={styles.secondaryButton} onClick={resetGame}>
                 Выйти
               </button>
@@ -446,7 +454,7 @@ export default function SimplyTrainerPage() {
         )}
 
         {stage === 'play' && session && currentNumber && (
-          <div className={styles.fullscreenOverlay}>
+          <div className={`${styles.fullscreenOverlay} ${styles.numberOverlay}`}>
             <div className={styles.numberContent}>
               <div className={styles.progress}>
                 <span>

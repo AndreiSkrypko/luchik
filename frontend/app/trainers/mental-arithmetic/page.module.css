@@ -10,9 +10,9 @@
 .main {
   flex: 1;
   width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 44px 20px 60px;
+  max-width: none;
+  margin: 0;
+  padding: 48px clamp(24px, 6vw, 80px) 68px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -74,13 +74,11 @@
   overflow: hidden;
   box-shadow: 0 28px 52px rgba(92, 120, 214, 0.16);
   border: 1px solid rgba(92, 120, 214, 0.16);
-  min-height: 380px;
 }
 
 .cardMedia {
   position: relative;
   background: linear-gradient(180deg, rgba(92, 120, 214, 0.85) 0%, rgba(233, 106, 18, 0.85) 100%);
-  min-height: 100%;
 }
 
 .cardMedia img {
@@ -107,10 +105,10 @@
 }
 
 .cardBody {
-  padding: 20px 24px 24px;
+  padding: 24px 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .cardBody h2 {
@@ -124,8 +122,8 @@
 
 .cardSubtitle {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.7;
   color: rgba(38, 64, 119, 0.82);
 }
 

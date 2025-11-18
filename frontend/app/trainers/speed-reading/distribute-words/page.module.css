@@ -10,9 +10,9 @@
 .main {
   flex: 1;
   width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 32px 20px 48px;
+  max-width: none;
+  margin: 0;
+  padding: 40px clamp(24px, 6vw, 80px) 60px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -106,12 +106,12 @@
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px 20px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(92, 120, 214, 0.16);
-  box-shadow: 0 14px 28px rgba(92, 120, 214, 0.14);
+  gap: 20px;
+  padding: 32px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(92, 120, 214, 0.18);
+  box-shadow: 0 30px 64px rgba(38, 52, 104, 0.16);
 }
 
 .countRow {
@@ -207,19 +207,33 @@
 .wordCountControl {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  padding: 18px 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(92, 120, 214, 0.16);
+  box-shadow: 0 16px 32px rgba(92, 120, 214, 0.08);
 }
 
 .wordCountValue {
-  font-weight: 700;
-  color: #264077;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(92, 120, 214, 0.14);
+  color: #5c78d6;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .wordCountScale {
   display: flex;
   justify-content: space-between;
-  font-size: 0.78rem;
-  color: rgba(38, 64, 119, 0.6);
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(38, 64, 119, 0.55);
 }
 
 .wordCountHeader {
@@ -229,11 +243,11 @@
 }
 
 .wordCountHeader span:first-child {
-  font-weight: 700;
+  font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.72rem;
-  color: rgba(38, 64, 119, 0.6);
+  font-weight: 700;
+  color: rgba(38, 64, 119, 0.78);
 }
 
 .previewToggle {

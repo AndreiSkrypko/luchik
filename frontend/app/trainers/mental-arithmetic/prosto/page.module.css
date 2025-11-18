@@ -310,79 +310,249 @@
 .fullscreenOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(22, 32, 62, 0.78);
+  background: linear-gradient(135deg, rgba(92, 120, 214, 0.95) 0%, rgba(233, 106, 18, 0.95) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(18px, 4vw, 36px);
   z-index: 100;
+  animation: overlayFadeIn 0.3s ease;
 }
 
-.countdownContent,
-.numberContent {
-  width: min(820px, 95vw);
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 32px;
-  border: 1px solid rgba(92, 120, 214, 0.2);
-  box-shadow: 0 40px 80px rgba(22, 36, 74, 0.35);
-  padding: clamp(24px, 4vw, 40px);
+.numberOverlay {
+  background: linear-gradient(135deg, rgba(38, 64, 119, 0.98) 0%, rgba(22, 32, 62, 0.98) 100%);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.countdownContent {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding-top: 80px;
+  padding-bottom: 40px;
 }
 
-.countdownContent p {
+.numberContent {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+
+.countdownEmoji {
+  font-size: clamp(5rem, 18vw, 10rem);
+  line-height: 1;
+  animation: emojiBounce 0.6s ease infinite;
+  filter: drop-shadow(0 20px 40px rgba(255, 255, 255, 0.3));
+}
+
+@keyframes emojiBounce {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateY(-10px);
+  }
+}
+
+.countdownText {
   margin: 0;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(38, 64, 119, 0.65);
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: textFadeIn 0.4s ease;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .countdownNumber {
-  font-size: clamp(4rem, 18vw, 10rem);
-  font-weight: 700;
+  font-size: clamp(8rem, 30vw, 18rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.5),
+    0 0 40px rgba(255, 255, 255, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+  margin: 0;
+  line-height: 1;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.countdownPulse {
+  animation: numberPulse 1s ease infinite;
+}
+
+@keyframes numberPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+.countdownHint {
+  margin: 0;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
   letter-spacing: 0.08em;
-  color: #e96a12;
-  text-shadow: 0 16px 40px rgba(233, 106, 18, 0.2);
-  margin: 18px 0 24px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: hintFadeIn 0.5s ease;
+}
+
+@keyframes hintFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.countdownContent .secondaryButton {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #264077;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  padding: 1rem 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.countdownContent .secondaryButton:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.numberContent .secondaryButton {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #264077;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  padding: 1rem 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+}
+
+.numberContent .secondaryButton:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
 .progress {
-  text-align: left;
-  font-size: 0.85rem;
+  text-align: center;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(38, 64, 119, 0.72);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .progressBar {
-  margin-top: 8px;
+  margin-top: 12px;
   width: 100%;
-  height: 7px;
+  height: 8px;
   border-radius: 999px;
-  background: rgba(92, 120, 214, 0.18);
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, rgba(92, 120, 214, 0.95) 0%, rgba(233, 106, 18, 0.95) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
   transition: width 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .currentNumber {
-  font-size: clamp(3rem, 16vw, 8rem);
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  margin: 34px 0;
-  color: #264077;
+  font-size: clamp(12rem, 50vw, 28rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 40px 0;
+  line-height: 1;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  text-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.6),
+    0 0 60px rgba(255, 255, 255, 0.4),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: numberAppear 0.3s ease;
+}
+
+@keyframes numberAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .positiveNumber {
-  color: #2f855a;
+  color: #ffffff;
 }
 
 .negativeNumber {
-  color: #c53030;
+  color: #ffeb3b;
+  text-shadow: 
+    0 0 30px rgba(255, 235, 59, 0.8),
+    0 0 60px rgba(255, 235, 59, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .answerCard,
