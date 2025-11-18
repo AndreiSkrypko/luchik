@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'trainers_flash_cards',
     'trainers_schulte_table',
     'trainers_stroop',
+    'trainers_simply',
     'api',
 ]
 

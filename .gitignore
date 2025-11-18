@@ -21,3 +21,5 @@ frontend/.env*.local
 .DS_Store
 Thumbs.db
 
+# External resources
+mental_final_new/
