@@ -7,10 +7,13 @@ from rest_framework.views import APIView
 
 from .models import FlashCard, FlashCardDeck
 from .serializers import (
+    FlashCardAbacusSessionRequestSerializer,
+    FlashCardAbacusSessionResponseSerializer,
     FlashCardDeckSerializer,
     FlashCardSessionRequestSerializer,
     FlashCardSessionResponseSerializer,
 )
+from .services import generate_flashcards_abacus_session
 
 import random
 
@@ -84,4 +87,20 @@ class FlashCardSessionView(APIView):
         }
 
         response_serializer = FlashCardSessionResponseSerializer(response_payload)
+        return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+class FlashCardAbacusSessionView(APIView):
+    def post(self, request, *args, **kwargs):
+        request_serializer = FlashCardAbacusSessionRequestSerializer(data=request.data)
+        request_serializer.is_valid(raise_exception=True)
+
+        session_payload = generate_flashcards_abacus_session(
+            difficulty=request_serializer.validated_data["difficulty"],
+            speed=request_serializer.validated_data["speed"],
+            quantity=request_serializer.validated_data["quantity"],
+            max_digit=request_serializer.validated_data["max_digit"],
+        )
+
+        response_serializer = FlashCardAbacusSessionResponseSerializer(session_payload)
         return Response(response_serializer.data, status=status.HTTP_200_OK)

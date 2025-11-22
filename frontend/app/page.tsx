@@ -72,7 +72,10 @@ export default function Home() {
         <div className={styles.topBarInner}>
           <Link href="/" className={styles.brandCell} aria-label="Вернуться на главную">
             <div className={styles.brandText}>
-              <span className={styles.brandDescriptor}>Детский центр современных знаний</span>
+              <span className={styles.brandDescriptor}>
+                Детский центр<br />
+                современных знаний
+              </span>
               <span className={styles.brandName}>«Лучик»</span>
             </div>
           </Link>
