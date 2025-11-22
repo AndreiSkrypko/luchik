@@ -2,8 +2,28 @@
   position: relative;
   margin-top: 4rem;
   padding: 3.5rem 1.5rem 2rem;
-  background: linear-gradient(180deg, #e5ecff 0%, #d8e1ff 55%, #ffd992 100%);
-  color: #264077;
+  background:
+    radial-gradient(120% 140% at 95% 95%, rgba(255, 230, 128, 0.85) 0%, rgba(255, 230, 128, 0) 55%),
+    radial-gradient(80% 120% at 10% 50%, rgba(233, 106, 18, 0.08) 0%, rgba(233, 106, 18, 0) 60%),
+    linear-gradient(180deg, #d8e4ff 0%, #e8efff 50%, #f2f5ff 100%);
+  border-top: 2px solid rgba(146, 169, 237, 0.4);
+  box-shadow: 0 -4px 20px rgba(74, 95, 177, 0.12), 0 -2px 8px rgba(233, 106, 18, 0.08);
+  color: #4a5fb1;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.6) 20%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(255, 255, 255, 0.6) 80%, 
+    transparent 100%);
 }
 
 .background {
@@ -35,23 +55,38 @@
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #d77a1a;
+  letter-spacing: 0.22em;
+  color: #e96a12;
+  font-weight: 700;
+  text-shadow: 
+    0 2px 8px rgba(255, 220, 150, 0.7),
+    0 1px 3px rgba(233, 106, 18, 0.4),
+    0 0 1px rgba(255, 255, 255, 0.8);
 }
 
 .brandName {
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: clamp(2rem, 3.4vw, 2.6rem);
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #e96a12;
+  text-shadow:
+    -2px -2px 0 #ffffff,
+    2px -2px 0 #ffffff,
+    -2px 2px 0 #ffffff,
+    2px 2px 0 #ffffff,
+    0 6px 20px rgba(233, 106, 18, 0.45),
+    0 2px 8px rgba(255, 180, 95, 0.5);
+  filter: drop-shadow(0 2px 4px rgba(233, 106, 18, 0.2));
 }
 
 .brandText p {
   max-width: 520px;
   line-height: 1.6;
   font-weight: 600;
-  color: rgba(38, 64, 119, 0.8);
+  color: rgba(74, 95, 177, 0.85);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .columns {
@@ -70,11 +105,15 @@
   font-size: 1.12rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: rgba(38, 64, 119, 0.9);
+  color: #3a4f91;
+  font-weight: 800;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 0.7),
+    0 0 1px rgba(74, 95, 177, 0.3);
 }
 
 .column + .column {
-  border-left: 2px dotted rgba(38, 64, 119, 0.25);
+  border-left: 1px solid rgba(146, 169, 237, 0.3);
   padding-left: 2rem;
 }
 
@@ -90,9 +129,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  color: #264077;
+  color: #3a4f91;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .phoneCard:hover,
@@ -100,19 +140,27 @@
 .socialCard:hover,
 .socialCard:focus-visible {
   color: #e96a12;
+  transform: translateY(-1px);
 }
 
 .phoneLabel {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: rgba(38, 64, 119, 0.5);
-  font-weight: 700;
+  color: rgba(74, 95, 177, 0.6);
+  font-weight: 800;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 0.7),
+    0 0 1px rgba(74, 95, 177, 0.2);
 }
 
 .phoneValue {
   font-size: 1.16rem;
   font-weight: 800;
+  color: #3a4f91;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 0.7),
+    0 0 1px rgba(74, 95, 177, 0.2);
 }
 
 .schedule {
@@ -126,11 +174,15 @@
   justify-content: space-between;
   gap: 1rem;
   font-weight: 600;
-  color: #264077;
+  color: #3a4f91;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .scheduleRow strong {
   color: #e96a12;
+  text-shadow: 
+    0 1px 3px rgba(255, 220, 150, 0.5),
+    0 0 1px rgba(233, 106, 18, 0.3);
 }
 
 .navList {
@@ -146,17 +198,18 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: #264077;
+  color: #3a4f91;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 700;
   text-decoration: none;
   transition: transform 0.2s ease, color 0.2s ease;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .navLink:hover,
 .navLink:focus-visible {
-  transform: translateX(4px);
+  transform: translateX(4px) translateY(-1px);
   color: #e96a12;
 }
 
@@ -171,27 +224,34 @@
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(38, 64, 119, 0.55);
-  font-weight: 700;
+  color: rgba(74, 95, 177, 0.6);
+  font-weight: 800;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 0.7),
+    0 0 1px rgba(74, 95, 177, 0.2);
 }
 
 .socialLabel {
   font-size: 1.05rem;
   font-weight: 800;
-  color: #264077;
+  color: #3a4f91;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 0.7),
+    0 0 1px rgba(74, 95, 177, 0.2);
 }
 
 .bottom {
   margin-top: 1rem;
   padding-top: 1.5rem;
-  border-top: 2px dotted rgba(38, 64, 119, 0.25);
+  border-top: 1px solid rgba(146, 169, 237, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: rgba(38, 64, 119, 0.85);
+  color: rgba(74, 95, 177, 0.85);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .starRow {
@@ -202,6 +262,7 @@
 .star {
   font-size: 1.1rem;
   color: #e96a12;
+  filter: drop-shadow(0 2px 4px rgba(233, 106, 18, 0.3));
 }
 
 .markerblue {
@@ -232,7 +293,7 @@
   .column + .column {
     border-left: none;
     padding-left: 0;
-    border-top: 2px dotted rgba(255, 255, 255, 0.35);
+    border-top: 1px solid rgba(146, 169, 237, 0.3);
     padding-top: 1.5rem;
   }
 

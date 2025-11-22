@@ -69,12 +69,26 @@ export default function Navbar() {
       <nav ref={navRef} className={`${styles.navbar} ${isStuck ? styles.sticky : ''}`}>
         <div className={styles.container}>
           <ul className={styles.menu}>
-            {menuItems.map((item) => (
+            {menuItems.map((item, index) => (
               <li key={item.label} className={styles.menuItem}>
                 <Link href={item.href} className={styles.menuLink}>
                   <span>{item.label}</span>
                   {item.hasDropdown && <span className={styles.menuCaret} aria-hidden="true" />}
                 </Link>
+                {index < menuItems.length - 1 && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      right: 0,
+                      top: '20%',
+                      bottom: '20%',
+                      width: '1px',
+                      background: 'linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0.3) 80%, transparent 100%)',
+                      opacity: 0.5,
+                    }}
+                    aria-hidden="true"
+                  />
+                )}
               </li>
             ))}
           </ul>
