@@ -147,7 +147,8 @@ cors_origins = os.getenv('CORS_ALLOWED_ORIGINS', default_cors_origins).split(','
 CORS_ALLOWED_ORIGINS = [origin.strip() for origin in cors_origins if origin.strip()]
 
 # Разрешаем все origins на Render (для продакшена лучше указать конкретные)
-if os.getenv('RENDER'):
+# Проверяем, что мы на Render через переменную RENDER_EXTERNAL_HOSTNAME
+if os.getenv('RENDER_EXTERNAL_HOSTNAME'):
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOW_ALL_ORIGINS = False

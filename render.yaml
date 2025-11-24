@@ -42,10 +42,7 @@ services:
     plan: free
     envVars:
       - key: NEXT_PUBLIC_API_BASE_URL
-        fromService:
-          type: web
-          name: luchik-backend
-          property: host
+        value: https://luchik-backend.onrender.com
 
 databases:
   - name: luchik-db
