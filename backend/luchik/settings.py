@@ -135,10 +135,22 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = os.getenv(
-    'CORS_ALLOWED_ORIGINS',
-    'http://localhost:3000,http://127.0.0.1:3000'
-).split(',')
+# Автоматически разрешаем запросы с Render frontend
+default_cors_origins = 'http://localhost:3000,http://127.0.0.1:3000'
+render_frontend_host = os.getenv('RENDER_EXTERNAL_FRONTEND_HOSTNAME')  # Если установлена переменная
+if render_frontend_host:
+    default_cors_origins = f'{default_cors_origins},{render_frontend_host}'
+
+# Также разрешаем все Render домены для упрощения (можно заменить на конкретный URL)
+cors_origins = os.getenv('CORS_ALLOWED_ORIGINS', default_cors_origins).split(',')
+# Убираем пустые строки
+CORS_ALLOWED_ORIGINS = [origin.strip() for origin in cors_origins if origin.strip()]
+
+# Разрешаем все origins на Render (для продакшена лучше указать конкретные)
+if os.getenv('RENDER'):
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOW_CREDENTIALS = True
 

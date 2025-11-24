@@ -40,6 +40,12 @@ services:
     dockerfilePath: ./frontend/Dockerfile
     dockerContext: ./frontend
     plan: free
+    envVars:
+      - key: NEXT_PUBLIC_API_BASE_URL
+        fromService:
+          type: web
+          name: luchik-backend
+          property: host
 
 databases:
   - name: luchik-db
