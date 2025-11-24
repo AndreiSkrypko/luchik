@@ -699,7 +699,7 @@ export default function DistributeWordsPage() {
             </div>
 
             <div className={styles.categoriesGrid}>
-              {['left', 'right'].map((side) => {
+              {(['left', 'right'] as const).map((side) => {
                 const targetLabel = side === 'left' ? theme.leftLabel : theme.rightLabel;
                 const targetIcon = side === 'left' ? theme.leftIcon : theme.rightIcon;
                 const items = shuffledWords.filter((word) => assignments[word] === side);

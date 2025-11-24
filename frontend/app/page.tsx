@@ -98,7 +98,7 @@ export default function Home() {
                       </span>
                     );
                   }
-                  if (line.type === 'link') {
+                  if (line.type === 'link' && 'href' in line) {
                     return (
                       <a key={line.text} href={line.href} className={styles.infoLink}>
                         {line.text}
