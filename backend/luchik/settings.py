@@ -18,7 +18,12 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-luchik-development-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# ALLOWED_HOSTS - автоматически определяет домен Render или использует переменную окружения
+default_hosts = 'localhost,127.0.0.1'
+render_host = os.getenv('RENDER_EXTERNAL_HOSTNAME')  # Render автоматически устанавливает эту переменную
+if render_host:
+    default_hosts = f'{default_hosts},{render_host}'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default_hosts).split(',')
 
 
 # Application definition
