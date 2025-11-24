@@ -30,7 +30,6 @@ services:
         fromDatabase:
           name: luchik-db
           property: password
-    healthCheckPath: /api/home/
 
   - type: web
     name: luchik-frontend
