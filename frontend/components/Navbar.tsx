@@ -130,7 +130,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   { label: 'Занятия', href: '/courses', hasDropdown: true, dropdownType: 'courses' },
-  { label: 'Летний клуб', href: '/summer-club' },
+  { label: 'Онлайн', href: '/online', hasDropdown: true, dropdownType: 'courses' },
   { label: 'Мини-сад', href: '/mini-kindergarten' },
   { label: 'Расписание', href: '/schedule' },
   { label: 'Тренажёры', href: '/trainers' },
